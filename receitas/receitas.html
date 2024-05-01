@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Receitas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body onload="preencheCatalogo()">
+    <h1>Catálogo de Receitas</h1>
+<div class="container-fluid bg-warning"  style="padding: 20px;">
+    <div div id="pnlCatalogo" class="d-flex flex-wrap justify-content-around">
+        </div>
+        </div>
+<script>
+            var receitas = [
+                {
+                    titulo: "Batata Calabresa",
+                    imagem: "receita_01.png", 
+                    preparo: "Cozinhe a Batata. Frite a linguiça. Sirva com o Requeijão.",
+                    ingredientes: ["Batata Calabresa", "Linguiça Calabresa", "Requeijão Cremoso"]
+                },
+                {
+                    titulo: "Coxinha de Brigadeiro",
+                    imagem: "receita_02.png", 
+                    preparo: "Junte o Leite Condensado, o chocolate em pó e manteiga. Aqueça em fogo baixo. Envolva os morangos e passe no granulado.",
+                    ingredientes: ["Leite Condensado", "Chocolate em Pó", "Chocolate Granulado", "Manteiga", "Morango"]
+                },
+                {
+                    titulo: "Strogonoff de Carne",
+                    imagem: "receita_03.png", 
+                    preparo: "Ferva o Creme de Leite em uma panela, adicione o molho, misture com a sua carne já preparada. Sirva-se.",
+                    ingredientes: ["Creme de Leite", "Molho Quatro-Queijos", "Carne a gosto"]
+                },
+            ]
+            
+        const getListaIngredientes = receita => {
+            let lista = "<ul>";
+            lista += receita.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join('');
+            lista += "</ul>";
+        return lista;
+        };
+
+        const getCard = receita => `
+            <div class="card" style="width: 250px;">
+                <img src="${receita.imagem}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">${receita.titulo}</h5>
+                    <div class="card-text">
+                        ${getListaIngredientes(receita)}
+                        <hr>
+                        ${receita.preparo}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const preencheCatalogo = () => {
+            const pnlCatalogo = document.getElementById("pnlCatalogo");
+            const htmlCatalogo = receitas.map(getCard).join('');
+            pnlCatalogo.innerHTML = htmlCatalogo;
+        };
+</script>
+    <footer>
+    <p id="copyright">© Trabalho de Victor de Almeida Costa - 2024</p>
+    </footer>
+</body>
+</html>
